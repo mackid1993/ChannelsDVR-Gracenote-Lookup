@@ -18,7 +18,7 @@ IF "%SERVER_IP%"=="" (
 
 REM Set standard port
 SET SERVER_PORT=8089
-
+1
 SET SERVER_URL=http://%SERVER_IP%:%SERVER_PORT%
 ECHO.
 ECHO Using server: %SERVER_URL%
@@ -149,15 +149,9 @@ ECHO if ($allResults.Count -gt 0) { >> "%_PSSCRIPT%"
 ECHO     Write-Host "" >> "%_PSSCRIPT%"
 ECHO     Write-Host "Found $($allResults.Count) total results:" >> "%_PSSCRIPT%"
 ECHO     $uniqueResults = $allResults ^| Group-Object -Property stationId ^| ForEach-Object { $_.Group[0] } >> "%_PSSCRIPT%"
-ECHO     $filtered = $uniqueResults ^| Where-Object { >> "%_PSSCRIPT%"
-ECHO         $cleanName = ($_.name -replace '[^^a-zA-Z0-9]', '').ToLower() >> "%_PSSCRIPT%"
-ECHO         $cleanCall = if ($_.callSign) { ($_.callSign -replace '[^^a-zA-Z0-9]', '').ToLower() } else { '' } >> "%_PSSCRIPT%"
-ECHO         $searchLower = $stripped.ToLower() >> "%_PSSCRIPT%"
-ECHO         $cleanName -like "*$searchLower*" -or $cleanCall -like "*$searchLower*" >> "%_PSSCRIPT%"
-ECHO     } >> "%_PSSCRIPT%"
-ECHO     Write-Host "Filtered to $($filtered.Count) matching results" >> "%_PSSCRIPT%"
+ECHO     Write-Host "Showing all $($uniqueResults.Count) unique results" >> "%_PSSCRIPT%"
 ECHO     Write-Host "" >> "%_PSSCRIPT%"
-ECHO     $filtered ^| Sort-Object type, name ^| ForEach-Object { >> "%_PSSCRIPT%"
+ECHO     $uniqueResults ^| Sort-Object type, name ^| ForEach-Object { >> "%_PSSCRIPT%"
 ECHO         Write-Host "  [$($_.type)] $($_.name) - $($_.callSign) - StationID: $($_.stationId)" >> "%_PSSCRIPT%"
 ECHO         if ($outputFile -ne '') { >> "%_PSSCRIPT%"
 ECHO             $st = $channel -replace ',', ';' >> "%_PSSCRIPT%"
