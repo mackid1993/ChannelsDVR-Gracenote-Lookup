@@ -1,6 +1,6 @@
 # Channels DVR Gracenote Lookup Tool
 
-A Windows batch script that searches for Gracenote station IDs using the Channels DVR Server API. This tool helps you find the correct station metadata for channel configuration and guide data mapping.
+A Windows batch script that searches for Gracenote station IDs using the Channels DVR Server API. This tool helps you find the correct station metadata for channel configuration and guide data mapping. Inspired by (this)[https://community.getchannels.com/t/search-for-gracenote-station-ids/37463] script, goal was to remove the need for any external dependancies.
 
 ## Features
 
